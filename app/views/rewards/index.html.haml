@@ -1,0 +1,11 @@
+-@comments.each_with_index do |comment, i|
+  %p{class: :reward}
+    %strong Place:
+    %span.place
+      =i+1
+    %strong Author:
+    %span.author
+      =comment.user_name
+    %strong Num of Comments:
+    %span.num_of_comments
+      = comment.num_of_comments

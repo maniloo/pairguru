@@ -7,6 +7,7 @@ Rails.application.routes.draw do
       get "movies"
     end
   end
+
   resources :movies, only: [:index, :show] do
     member do
       get :send_info
@@ -17,6 +18,8 @@ Rails.application.routes.draw do
   end
 
   resources :comments, only: [:create, :destroy]
+
+  resources :rewards, only: :index
 
   namespace :api do
     namespace :v1 do
