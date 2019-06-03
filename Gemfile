@@ -9,6 +9,7 @@ gem "draper"
 gem "haml-rails"
 gem "jquery-rails"
 gem "sass-rails"
+gem 'rest-client', '~> 2.0.2'
 gem "sqlite3"
 gem "uglifier"
 
@@ -27,6 +28,7 @@ group :development do
 end
 
 group :development, :test do
+  gem "byebug"
   gem "capybara"
   gem "factory_bot_rails"
   gem "faker"

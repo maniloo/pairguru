@@ -19,3 +19,7 @@
 /vendor
 
 coverage
+
+.byebug_history
+.generators
+.idea/
