@@ -13,6 +13,7 @@
 #
 
 class Movie < ApplicationRecord
+  validates_with TitleBracketsValidator
   belongs_to :genre
 
   scope :api_v1_collection, -> do
