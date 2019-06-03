@@ -6,5 +6,35 @@
       Rating
     = @movie.rating
   %p.description= @movie.description
+
+%h2 Comments
+- @movie.comments.map do |comment|
+  %p
+    %strong
+      Author:
+    = comment.user.name
+    - if user_signed_in? && (current_user.id == comment.user_id)
+      = link_to "(Delete comment)", comment_path(comment.id), method: :delete
+
+    %strong
+      Content:
+    %span{class: :comment}
+      = comment.content
+
+
 - if user_signed_in?
   %p= link_to 'Email me details about this movie', send_info_movie_path(@movie), class: 'btn btn-sm btn-default'
+
+
+
+  - if current_user.comments.where(movie_id: @movie.id).any?
+    %h2 You can only add one comment per movie
+  - else
+    = form_for Comment.new, url: comments_path, method: :post do |f|
+      %div
+        %h3 Content
+      %div
+        = f.text_area :content, size: '50x10'
+        = f.hidden_field :movie_id, value: @movie.id
+      %div
+        = f.submit "Create"

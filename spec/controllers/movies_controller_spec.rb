@@ -36,6 +36,14 @@ RSpec.describe MoviesController do
 
     describe "show action" do
       describe "renders the movie info with data from API" do
+        let(:user) do
+          create(:user)
+        end
+
+        let!(:comment) do
+          create(:comment, user_id: user.id, movie_id: movie.id, content: "Very exiting movie")
+        end
+
         before do
           visit movie_path(movie)
         end
@@ -59,6 +67,12 @@ RSpec.describe MoviesController do
 
           expect(description_element.text).not_to eq(movie.description)
           expect(description_element.text).not_to eq("")
+        end
+
+        it "show comment created by users" do
+          coment_element = find_all("span.comment")[0]
+
+          expect(coment_element.text).to eq(comment.content)
         end
       end
     end
