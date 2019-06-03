@@ -15,6 +15,7 @@
 class Movie < ApplicationRecord
   validates_with TitleBracketsValidator
   belongs_to :genre
+  has_many :comments
 
   scope :api_v1_collection, -> do
     select("movies.id, movies.title")
